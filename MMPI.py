@@ -1,11 +1,11 @@
 import csv
 import os
 
-dupIndex = {8, 318, 13, 290, 15, 314, 16, 315, 20, 310, 21, 308, 22, 326, 23, 288, 24, 333, 32, 328, 33, 323, 35, 331,
-            37, 302, 38, 311, 305, 366, 317, 362}
+dupIndex = 8, 318, 13, 290, 15, 314, 16, 315, 20, 310, 21, 308, 22, 326, 23, 288, 24, 333, 32, 328, 33, 323, 35, 331, \
+           37, 302, 38, 311, 305, 366, 317, 362
 
-dupIndexPair = ((8, 318), (13, 290), (15, 314), (16, 315), (20, 310), (21, 308), (22, 326), (23, 288),
-                (24, 333), (32, 328), (33, 323), (35, 331), (37, 302), (38, 311), (305, 366), (317, 362))
+dupIndexPair = (8, 318), (13, 290), (15, 314), (16, 315), (20, 310), (21, 308), (22, 326), (23, 288), (24, 333), \
+               (32, 328), (33, 323), (35, 331), (37, 302), (38, 311), (305, 366), (317, 362)
 
 cat = ['L', 'F', 'K', 'Hy', 'D', 'Hs', 'Pd', 'Mf-m', 'Mf-f', 'Pa', 'Pt', 'Sc', 'Ma', 'Si']
 
@@ -16,7 +16,10 @@ def clear():
     elif os.name == 'posix':
         os.system('clear')
     else:
-        print('Unknown OS')
+        pass
+
+
+# 根据系统选择清空屏幕方法
 
 def oriMarks(answers):
     indexes = {'L': ((),
@@ -124,7 +127,7 @@ def main():
 
 def saveChoices():
     clear()
-    with open("MMPI.txt", "r", encoding = 'UTF-8') as f:
+    with open("MMPI.txt", "r", encoding='UTF-8') as f:
         original = f.readlines()
     if len(original) != 566:
         print("本脚本仅支持566题版本，请检查MMPI.txt!")
@@ -152,7 +155,7 @@ def saveChoices():
         Answers.append(answer)
         clear()
     headers = ['index', 'question', 'answer']
-    with open('result.csv', 'w', encoding = 'UTF-8')as f:
+    with open('result.csv', 'w', encoding='UTF-8')as f:
         f_csv = csv.writer(f)
         f_csv.writerow(headers)
         f_csv.writerows(Answers)
@@ -161,7 +164,7 @@ def saveChoices():
 def analyzeChoices():
     Answers = []
     douMark = 0
-    with open('result.csv', 'r', encoding= 'UTF-8' )as f:
+    with open('result.csv', 'r', encoding='UTF-8')as f:
         f_csv = csv.reader(f)
         for row in f_csv:
             if row[0] != 'index':
